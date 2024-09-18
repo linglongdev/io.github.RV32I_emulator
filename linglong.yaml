@@ -1,0 +1,30 @@
+version: "1"
+
+package:
+  id: io.github.RV32I_emulator
+  name: RV32I_emulator
+  version: 2.0.0.1
+  kind: app
+  description: |
+    RISC-V A visual RV32I emulator
+
+command:
+  - /opt/apps/io.github.RV32I_emulator/files/bin/RV32I_emulator
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/alankuo04/rv32I-emulator.git
+    version: master
+    commit: d0a9ade8ab01b72ce915fee9819238b1e4602803
+
+build: |
+  cd /project/linglong/sources/rv32I-emulator.git
+  git apply ../../../0001-install.patch
+  cp src/Images/Stop.png src/Images/rv32I-emulator.png
+  cd src
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install
