@@ -1,0 +1,52 @@
+From 8ab92c1cdbe8848f7c94130db20aedb8900039f2 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Sat, 14 Sep 2024 18:14:30 +0800
+Subject: [PATCH] instal
+
+---
+ src/RV32I_emulator.desktop | 11 +++++++++++
+ src/RV32I_emulator.pro     |  9 ++++++++-
+ 2 files changed, 19 insertions(+), 1 deletion(-)
+ create mode 100644 src/RV32I_emulator.desktop
+
+diff --git a/src/RV32I_emulator.desktop b/src/RV32I_emulator.desktop
+new file mode 100644
+index 0000000..6e12f34
+--- /dev/null
++++ b/src/RV32I_emulator.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=RV32I_emulator
++Name=RV32I_emulator
++Name[zh_CN]=RV32I_emulator
++Icon=RV32I_emulator
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=RV32I_emulator
++Version=
+diff --git a/src/RV32I_emulator.pro b/src/RV32I_emulator.pro
+index 7991afb..0522418 100644
+--- a/src/RV32I_emulator.pro
++++ b/src/RV32I_emulator.pro
+@@ -34,8 +34,15 @@ FORMS += \
+ 
+ # Default rules for deployment.
+ qnx: target.path = /tmp/$${TARGET}/bin
+-else: unix:!android: target.path = /opt/$${TARGET}/bin
++else: unix:!android: #target.path = /opt/$${TARGET}/bin
+ !isEmpty(target.path): INSTALLS += target
++target.path = $$PREFIX/bin
++desktop.files = RV32I_emulator.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons/hicolor/apps/
++icons.files = Images/RV32I_emulator.png
++
++INSTALLS += target desktop icons
+ 
+ DISTFILES +=
+ 
+-- 
+2.43.4
+
